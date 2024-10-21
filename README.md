@@ -105,7 +105,7 @@ example: <(h1)>(.*?)</\1>
 The first part (h1) captures the tag name. \1 refers to the first capture group (which contains h1), ensuring that the closing tag matches the opening tag. In the case of the email validation regex you provided, there are no back-references being used, as the structure of an email doesn't require referring back to previously captured groups.
 ### Look-ahead and Look-behind
 
-ook-ahead and Look-behind:
+Look-ahead and Look-behind:
 Look-ahead and look-behind are known as zero-width assertions in regular expressions. They allow you to assert that a certain condition exists either ahead of or behind the current position in the string, without actually consuming any characters from the string. This means that they check for a condition without including it in the match.
 
 Look-ahead (positive and negative):
@@ -137,3 +137,5 @@ The email validation regex does not use look-ahead or look-behind assertions, si
 ## Author
 Erin Spix is a web development student and art lead for a California-based startup. She lives in michigan with her old dog and two fluffy chinchillas.  You can find more of her work on GitHub.
 https://github.com/erinspix
+gist:
+https://gist.github.com/erinspix/ab26fa37549eba5ec98f28730b9f9bf2
