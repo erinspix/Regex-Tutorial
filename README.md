@@ -1,21 +1,25 @@
-# Title Regex-Gist
+# Title Regex Tutorial: Email and Password Validation
 
-Regular expressions, often referred to as regex, are sequences of characters used to define search patterns within text. Regex is a powerful tool commonly used for input validation, pattern matching, and string manipulation. In this tutorial, we will explain the components of a regular expression used to validate email addresses and show how each part works to ensure the input follows the correct format.
-
-
+Regular expressions (regex) are powerful tools for defining search patterns within text. They are commonly used in web development for input validation, pattern matching, and string manipulation. In this tutorial, we will break down the components of regex patterns for both email and password validation, showing how each part ensures the input meets specific requirements.
 ## Summary
 
-We will be analyzing the following regular expression, which is designed to verify that user input follows the format of a valid email address:
+We will be analyzing the following regular expression, which is designed to verify that user input follows the format of a valid email address, as well as a password:
 
 regex
+Email Validation:
+/^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/
+Ensures a valid email format with a username, domain, and top-level domain (TLD).
 
-/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
-
-This regex checks for:
 
 A username containing valid characters before the "@" symbol.
 A domain name following the "@".
 A top-level domain after a period (such as .com, .org, or .net), which has a length between 2 and 6 characters.
+
+
+Password Validation:
+/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+This regex checks for:
+Ensures a strong password containing lowercase, uppercase, digits, special characters, and a minimum length of 8.
 
 ## Table of Contents
 
@@ -42,11 +46,22 @@ $: The dollar sign ($) matches the end of the string.
 These anchors ensure that the entire input is validated as an email address, not just part of it.
 
 ### Anchors
-Quantifiers:
-Quantifiers specify the number of occurrences of a character or group. They define how many instances of a character or set of characters must be present for a match:
+Anchors mark the beginning or end of a string:
+^ (Caret): Matches the start of the string.
+^hello
+Matches any string starting with "hello".
+$ (Dollar sign): Matches the end of the string.
+world$
+Matches any string ending with "world".
+In the email regex:
 
-+: The plus sign (+) is a greedy quantifier that matches one or more of the preceding element. For example, ([a-z0-9_\.-]+) allows for one or more characters in the username.
-{2,6}: This quantifier specifies a range, ensuring that the top-level domain (like .com) has between 2 and 6 characters.
+^([a-z0-9_.-]+)@...$ ensures the entire input is validated as an email.
+In the password regex:
+
+^(?=.*[a-z])...{8,}$ ensures the input is validated as a complete password.
+
+
+
 
 ### Quantifiers
 Quantifiers:
@@ -54,6 +69,10 @@ Quantifiers specify the number of occurrences of a character or group. They defi
 
 + (Plus sign): A greedy quantifier that matches one or more of the preceding element. In the email regex, ([a-z0-9_.-]+) allows for one or more characters in the username.
 {2,6}: Specifies a range, ensuring that the top-level domain (like .com) has between 2 and 6 characters.
+
+In the email regex, [a-z0-9_.-]+ matches one or more characters in the username, while {2,6} ensures the TLD is 2 to 6 characters long.
+
+In the password regex, {8,} ensures a minimum length of 8 characters.
 
 ### OR Operator
 The OR operator (|) allows for matching between multiple alternatives. While it is not used in this specific email validation regex, it is a common component in regex patterns for defining multiple possible matches.
@@ -67,6 +86,10 @@ Character classes allow for defining sets of characters that can be matched with
 [a-z]: Matches any lowercase letter from 'a' to 'z'.
 [_.-]: Matches literal underscore, period, and hyphen characters.
 These character classes define which characters are allowed at specific positions within the email string, ensuring that the input follows the correct format.
+
+In the email regex, [a-z0-9_.-] specifies allowed characters in the username, while [a-z.] matches the TLD.
+
+In the password regex, [A-Za-z\d@$!%*?&] specifies which characters are allowed.
 ### Flags
 Flags:
 Flags modify how a regex is applied, controlling certain features like case sensitivity and whether the search should continue after the first match:
@@ -89,6 +112,9 @@ Bracket expressions, denoted by [], are used to match any one character from a d
 [a-z0-9_.-]: Matches lowercase letters (a-z), digits (0-9), underscores (_), periods (.), and hyphens (-).
 [\da-z.-]: Matches digits (\d), lowercase letters (a-z), periods (.), and hyphens (-).
 These expressions ensure that only valid characters are included at specific parts of the email address.
+
+In both regex patterns, bracket expressions define allowed characters in the email and password.
+
 ### Greedy and Lazy Match
 Regex quantifiers can be either greedy or lazy:
 
